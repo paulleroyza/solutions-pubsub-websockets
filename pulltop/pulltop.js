@@ -19,7 +19,7 @@
 const { PubSub } = require('@google-cloud/pubsub');
 const pubsub = new PubSub();
 const util = require('util');
-const uuidv1 = require('uuid/v1');
+const { v4: uuidv4 } = require('uuid');
 
 
 /** Maximum number of messages to queue locally un-acked */
@@ -37,7 +37,7 @@ if (!TOPICNAME) {
 
 /** manufacture subscription name **/
 const SUBNAME = process.env.USER + '-' +
-  TOPICNAME.replace(/\//gi, '-') + '-' + uuidv1();
+  TOPICNAME.replace(/\//gi, '-') + '-' + uuidv4();
 
 /** process signal handlers to clean up subs **/
 let SUB = undefined;
